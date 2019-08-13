@@ -60,6 +60,21 @@ namespace DataStructure.Models
             get { return _dummy; }
         }
 
+        public int Count
+        {
+            get
+            {
+                var count = 0;
+
+                for (var node = First; node != End; node = node.Next)
+                {
+                    count++;
+                }
+
+                return count;
+            }
+        }
+
         public Node AddBefore(Node node, T element)
         {
             var newNode = new Node(element, node.Previous, node);

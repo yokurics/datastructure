@@ -13,7 +13,7 @@ namespace DataStructure.Tests
             var input = "hoge";
             var items = new MyArrayList<string>(new string[] { "a", "b", "c" });
             items.AddFirst(input);
-            var actual = items.First();
+            var actual = items.First;
             
             Assert.AreEqual(expected, actual);
         }
@@ -25,7 +25,7 @@ namespace DataStructure.Tests
             var input = "hoge";
             var items = new MyArrayList<string>(new string[] { "a", "b", "c" });
             items.AddLast(input);
-            var actual = items.Last();
+            var actual = items.Last;
 
             Assert.AreEqual(expected, actual);
         }

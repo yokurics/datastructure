@@ -8,20 +8,26 @@ namespace DataStructure.Models
 
         private int _count { get; set; }
 
+        public MyArrayList()
+        {
+            _items = new T[0];
+            _count = 0;
+        }
+
+        public MyArrayList(T[] items)
+        {
+            _items = items;
+            _count = items.Length;
+        }
+
         public int Count
         {
-            get
-            {
-                return _count;
-            }
+            get { return _count; }
         }
 
         public int Capacity
         {
-            get
-            {
-                return _items.Length;
-            }
+            get { return _items.Length; }
         }
 
         public T this[int index]
@@ -44,18 +50,6 @@ namespace DataStructure.Models
 
                 _items[index] = value;
             }
-        }
-
-        public MyArrayList()
-        {
-            _items = new T[0];
-            _count = 0;
-        }
-
-        public MyArrayList(T[] items)
-        {
-            _items = items;
-            _count = items.Length;
         }
 
         public void AddFirst(T item)
@@ -98,14 +92,14 @@ namespace DataStructure.Models
             }
         }
 
-        public T First()
+        public T First
         {
-            return _items[0];
+            get { return _items[0]; }
         }
 
-        public T Last()
+        public T Last
         {
-            return _items[_count - 1];
+            get { return _items[_count - 1]; }
         }
     }
 }

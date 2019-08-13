@@ -12,13 +12,27 @@ namespace DataStructure.Tests
         [TestMethod]
         public void TestAddFirst()
         {
-            var expected = "node1";
-            var input1 = "node1";
-            var input2 = "node2";
+            var expected = "node0";
+            var inputs = new string[] { "node0", "node1" };
             var items = new MyLinkedList<string>();
-            var node1 = items.AddFirst(input1);
-            items.AddAfter(node1, input2);
+            var node0 = items.AddFirst(inputs[0]);
+            items.AddAfter(node0, inputs[1]);
             var actual = items.First.Value;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestAddLast()
+        {
+            var expected = "node3";
+            var inputs = new string[] { "node0", "node1", "node2", "node3" };
+            var items = new MyLinkedList<string>();
+            var node0 = items.AddFirst(inputs[0]);
+            items.AddLast(inputs[inputs.Length - 1]);
+            var node1 = items.AddAfter(node0, inputs[1]);
+            var node2 = items.AddAfter(node1, inputs[2]);
+            var actual = items.Last.Value;
 
             Assert.AreEqual(expected, actual);
         }

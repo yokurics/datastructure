@@ -8,9 +8,11 @@ namespace DataStructure.Models
 
         private int _count { get; set; }
 
-        public MyArrayList()
+        public MyArrayList() : this(4) {}
+
+        public MyArrayList(int capacity)
         {
-            _items = new T[0];
+            _items = new T[capacity];
             _count = 0;
         }
 
@@ -42,24 +44,8 @@ namespace DataStructure.Models
 
         public T this[int index]
         {
-            get
-            {
-                if (index > _count - 1)
-                {
-                    throw new ArgumentOutOfRangeException("Index was out of range.");
-                }
-
-                return _items[index];
-            }
-            set
-            {
-                if (index > _count - 1)
-                {
-                    throw new ArgumentOutOfRangeException("Index was out of range.");
-                }
-
-                _items[index] = value;
-            }
+            get { return _items[index]; }
+            set { _items[index] = value; }
         }
 
         public void AddFirst(T item)
@@ -84,7 +70,7 @@ namespace DataStructure.Models
 
             if (newCount > _items.Length)
             {
-                var newCapacity = _items.Length + 5;
+                var newCapacity = _items.Length + 4;
                 var newItems = new T[newCapacity];
                 _Copy(_items, newItems, _items.Length);
                 _items = newItems;

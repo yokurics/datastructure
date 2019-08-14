@@ -30,6 +30,16 @@ namespace DataStructure.Models
             get { return _items.Length; }
         }
 
+        public T First
+        {
+            get { return _items[0]; }
+        }
+
+        public T Last
+        {
+            get { return _items[_count - 1]; }
+        }
+
         public T this[int index]
         {
             get
@@ -84,22 +94,22 @@ namespace DataStructure.Models
             _count = newCount;
         }
 
+        public void Remove(int index)
+        {
+            for (var i = index; i < _count - 1; i++)
+            {
+                _items[i] = _items[i + 1];
+            }
+
+            _count--;
+        }
+
         private void _Copy(T[] sourceItems, T[] destItems, int sourceCapacity)
         {
             for (var i = 0; i < sourceCapacity; i++)
             {
                 destItems[i] = sourceItems[i];
             }
-        }
-
-        public T First
-        {
-            get { return _items[0]; }
-        }
-
-        public T Last
-        {
-            get { return _items[_count - 1]; }
         }
     }
 }

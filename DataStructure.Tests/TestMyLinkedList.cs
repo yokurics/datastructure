@@ -1,5 +1,6 @@
 ﻿using DataStructure.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace DataStructure.Tests
 {
@@ -12,7 +13,6 @@ namespace DataStructure.Tests
             var expected = "foo";
             var inputs = new string[] { "node0", "node1", "node2", "node3" };
             var items = new MyLinkedList<string>();
-            var currentNode = items.End;
 
             for (var i = 0; i < inputs.Length; i++)
             {
@@ -21,12 +21,13 @@ namespace DataStructure.Tests
                     items.AddFirst("foo");
                 }
 
-                currentNode = items.AddAfter(currentNode, inputs[i]);
+                items.AddLast(inputs[i]);
             };
 
             var actual = items.First.Value;
 
             Assert.AreEqual(expected, actual);
+            PrintItemValues(items);
         }
 
         [TestMethod]
@@ -35,7 +36,6 @@ namespace DataStructure.Tests
             var expected = "foo";
             var inputs = new string[] { "node0", "node1", "node2", "node3" };
             var items = new MyLinkedList<string>();
-            var currentNode = items.End;
 
             for (var i = 0; i < inputs.Length; i++)
             {
@@ -44,12 +44,13 @@ namespace DataStructure.Tests
                     items.AddLast("foo");
                 }
 
-                currentNode = items.AddAfter(currentNode, inputs[i]);
+                items.AddFirst(inputs[i]);
             };
 
             var actual = items.Last.Value;
 
             Assert.AreEqual(expected, actual);
+            PrintItemValues(items);
         }
 
         [TestMethod]
@@ -58,16 +59,23 @@ namespace DataStructure.Tests
             var expected = 4;
             var inputs = new string[] { "node0", "node1", "node2", "node3" };
             var items = new MyLinkedList<string>();
-            var currentNode = items.End;
 
             for (var i = 0; i < inputs.Length; i++)
             {
-                currentNode = items.AddAfter(currentNode, inputs[i]);
+                items.AddLast(inputs[i]);
             };
 
             var actual = items.Count;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        public void PrintItemValues<T>(MyLinkedList<T> items) // for debug
+        {
+            for (var node = items.First; node != null; node = node.Next)
+            {
+                Console.WriteLine(node.Value);
+            }
         }
     }
 }

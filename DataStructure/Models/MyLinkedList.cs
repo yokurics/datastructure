@@ -10,11 +10,9 @@ namespace DataStructure.Models
             private Node _previous { get; set; }
             private Node _next { get; set; }
 
-            internal Node(T value, Node previous, Node next)
+            internal Node(T value)
             {
                 _value = value;
-                _previous = previous;
-                _next = next;
             }
 
             public T Value
@@ -36,69 +34,91 @@ namespace DataStructure.Models
             }
         }
 
-        private Node _dummy { get; set; }
+        private Node _first { get; set; }
+        private Node _last { get; set; }
+        private int _count { get; set; }
 
         public MyLinkedList()
         {
-            _dummy = new Node(default(T), null, null);
-            _dummy.Next = _dummy;
-            _dummy.Previous = _dummy;
         }
 
         public Node First
         {
-            get { return _dummy.Next; }
+            get { return _first; }
         }
 
         public Node Last
         {
-            get { return _dummy.Previous; }
-        }
-
-        public Node End
-        {
-            get { return _dummy; }
+            get { return _last; }
         }
 
         public int Count
         {
-            get
-            {
-                var count = 0;
-
-                for (var node = First; node != End; node = node.Next)
-                {
-                    count++;
-                }
-
-                return count;
-            }
+            get { return _count; }
         }
 
         public Node AddBefore(Node node, T element)
         {
-            var newNode = new Node(element, node.Previous, node);
-            node.Previous.Next = newNode;
+            var newNode = new Node(element);
+
+            if (node.Previous != null)
+            {
+                node.Previous.Next = newNode;
+                newNode.Previous = node.Previous;
+            }
+
             node.Previous = newNode;
+            newNode.Next = node;
+            _count++;
             return newNode;
         }
 
         public Node AddAfter(Node node, T element)
         {
-            var newNode = new Node(element, node, node.Next);
-            node.Next.Previous = newNode;
+            var newNode = new Node(element);
+
+            if (node.Next != null)
+            {
+                node.Next.Previous = newNode;
+                newNode.Next = node.Next;
+            }
+
             node.Next = newNode;
+            newNode.Previous = node;
+            _count++;
             return newNode;
         }
 
         public Node AddFirst(T element)
         {
-            return AddAfter(_dummy, element);
+            if (_first == null)
+            {
+                _first = new Node(element);
+                _last = _first;
+                _count++;
+            }
+            else
+            {
+                _first = AddBefore(_first, element);
+            }
+
+            return _first;
         }
 
         public Node AddLast(T element)
         {
-            return AddBefore(_dummy, element);
+            if (_last == null)
+            {
+                _last = new Node(element);
+                _first = _last;
+                _count++;
+            }
+            else
+            {
+                _last = AddAfter(_last, element);
+            }
+
+            return _last;
         }
     }
 }

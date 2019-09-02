@@ -35,11 +35,20 @@ namespace DataStructure.Tests
         }
 
         [TestMethod]
+        public void TestRecursiveBubbleSort()
+        {
+            var items = new int[] { 8, 4, 3, 7, 6, 5, 2, 1 };
+            var expected = 1;
+            items.RecursiveBubbleSort(items.Length);
+            var actual = items[0];
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void TestRecursiveQuickSort()
         {
-            var items = new int[] { 1, 3, 5, 7, 9, 11 };
+            var items = new int[] { 8, 4, 3, 7, 6, 5, 2, 1 };
             var expected = 1;
-            items.Swap(0, items.Length - 1);
             items.RecursiveQuickSort(0, items.Length - 1);
             var actual = items[0];
             Assert.AreEqual(expected, actual);

@@ -53,9 +53,25 @@ namespace DataStructure.Extentions
             return -1;
         }
 
+        public static void RecursiveBubbleSort(this int[] items, int number)
+        {
+            if (number > 1)
+            {
+                for (var i = 0; i < items.Length - 1; i++)
+                {
+                    if (items[i] > items[i + 1])
+                    {
+                        items.Swap(i, i + 1);
+                    }
+                }
+
+                RecursiveBubbleSort(items, number - 1);
+            }
+        }
+
         public static void RecursiveQuickSort(this int[] items, int start, int end)
         {
-            if (start <= end)
+            if (start < end)
             {
                 var pivot = items[start]; // TODO: change to get medium value
                 var left = start;

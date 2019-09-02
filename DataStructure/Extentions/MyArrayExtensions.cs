@@ -52,5 +52,45 @@ namespace DataStructure.Extentions
 
             return -1;
         }
+
+        public static void RecursiveQuickSort(this int[] items, int start, int end)
+        {
+            if (start <= end)
+            {
+                var pivot = items[start]; // TODO: change to get medium value
+                var left = start;
+                var right = end;
+
+                while (true)
+                {
+                    while (items[left] < pivot)
+                    {
+                        left++;
+                    }
+
+                    while (items[right] > pivot)
+                    {
+                        right--;
+                    }
+
+                    if (left >= right)
+                    {
+                        break;
+                    }
+
+                    items.Swap(left, right);
+                }
+
+                RecursiveQuickSort(items, start, left - 1);
+                RecursiveQuickSort(items, right + 1, end);
+            }
+        }
+
+        public static void Swap(this int[] items, int a, int b)
+        {
+            var temp = items[b];
+            items[b] = items[a];
+            items[a] = temp;
+        }
     }
 }

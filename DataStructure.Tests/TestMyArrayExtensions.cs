@@ -33,5 +33,16 @@ namespace DataStructure.Tests
             var actual = items.RecursiveBinarySearch(value, 0, items.Length);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void TestRecursiveQuickSort()
+        {
+            var items = new int[] { 1, 3, 5, 7, 9, 11 };
+            var expected = 1;
+            items.Swap(0, items.Length - 1);
+            items.RecursiveQuickSort(0, items.Length - 1);
+            var actual = items[0];
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

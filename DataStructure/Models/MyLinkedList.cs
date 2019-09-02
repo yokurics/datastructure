@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DataStructure.Models
+﻿namespace DataStructure.Models
 {
     public class MyLinkedList<T>
     {

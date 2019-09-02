@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataStructure.Extentions
+﻿namespace DataStructure.Extentions
 {
     public static class MyArrayExtensions
     {
-
         public static int IterativeBinarySearch(this int[] items, int value, int start, int end)
         {
             while (start <= end)

@@ -1,6 +1,5 @@
 ﻿using DataStructure.Extentions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace DataStructure.Tests
 {

@@ -1,5 +1,7 @@
 ﻿using DataStructure.Extentions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using System;
 
 namespace DataStructure.Tests
 {
@@ -44,11 +46,37 @@ namespace DataStructure.Tests
         }
 
         [TestMethod]
+        public void TestIterativeBubbleSort()
+        {
+            var items = new int[] { 8, 4, 3, 7, 6, 5, 2, 1 };
+            var expected = 1;
+            Console.WriteLine(JsonConvert.SerializeObject(items));
+            items.IterativeBubbleSort();
+            Console.WriteLine(JsonConvert.SerializeObject(items));
+            var actual = items[0];
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void TestRecursiveQuickSort()
         {
             var items = new int[] { 8, 4, 3, 7, 6, 5, 2, 1 };
             var expected = 1;
+            Console.WriteLine(JsonConvert.SerializeObject(items));
             items.RecursiveQuickSort(0, items.Length - 1);
+            Console.WriteLine(JsonConvert.SerializeObject(items));
+            var actual = items[0];
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestIterativeQuickSort()
+        {
+            var items = new int[] { 8, 4, 3, 7, 6, 5, 2, 1 };
+            var expected = 1;
+            Console.WriteLine(JsonConvert.SerializeObject(items));
+            items.IterativeQuickSort(0, items.Length - 1);
+            Console.WriteLine(JsonConvert.SerializeObject(items));
             var actual = items[0];
             Assert.AreEqual(expected, actual);
         }

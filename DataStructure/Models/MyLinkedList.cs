@@ -4,31 +4,13 @@
     {
         public class Node
         {
-            private T _value { get; set; }
-            private Node _previous { get; set; }
-            private Node _next { get; set; }
+            public T Value { get; set; }
+            public Node Previous { get; set; }
+            public Node Next { get; set; }
 
             internal Node(T value)
             {
-                _value = value;
-            }
-
-            public T Value
-            {
-                get { return _value; }
-                set { _value = value; }
-            }
-
-            public Node Previous
-            {
-                get { return _previous; }
-                internal set { _previous = value; }
-            }
-
-            public Node Next
-            {
-                get { return _next; }
-                internal set { _next = value; }
+                Value = value;
             }
         }
 

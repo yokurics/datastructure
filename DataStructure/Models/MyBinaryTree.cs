@@ -1,26 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DataStructure.Models
 {
-    public class MyBinaryTree<T>
+    public class MyBinaryTreeNode<T>
     {
-        public class TreeNode
-        {
-            public T Value { get; set; }
-            public TreeNode Left { get; set; }
-            public TreeNode Right { get; set; }
+        public T Value { get; set; }
+        public MyBinaryTreeNode<T> Left { get; set; }
+        public MyBinaryTreeNode<T> Right { get; set; }
 
-            internal TreeNode(T value)
-            {
-                Value = value;
-            }
+        public MyBinaryTreeNode()
+        {
+            Value = default(T);
         }
 
-        public TreeNode Root { get; set; }
+        public MyBinaryTreeNode(T value)
+        {
+            Value = value;
+        }
+    }
 
-        public void RecursivePrintPreOrder(TreeNode node)
+    public class MyBinaryTree<T>
+    {
+        public MyBinaryTreeNode<T> Root { get; set; }
+
+        public void RecursivePrintPreOrder(MyBinaryTreeNode<T> node)
         {
             if (node == null)
             {
@@ -32,10 +35,10 @@ namespace DataStructure.Models
             RecursivePrintPreOrder(node.Right);
         }
 
-        public void IterativePrintPreOrder()
+        public void IterativePrintPreOrder(MyBinaryTreeNode<T> rootNode)
         {
-            var stack = new MyStack<TreeNode>();
-            stack.Push(Root);
+            var stack = new MyStack<MyBinaryTreeNode<T>>();
+            stack.Push(rootNode);
 
             while (stack.Count > 0)
             {
@@ -54,22 +57,22 @@ namespace DataStructure.Models
             }
         }
 
-        public void RecursivePrintInOrder(TreeNode node)
+        public void RecursivePrintInOrder(MyBinaryTreeNode<T> node)
         {
             if (node == null)
             {
                 return;
             }
 
-            RecursivePrintPreOrder(node.Left);
+            RecursivePrintInOrder(node.Left);
             Console.WriteLine(node.Value);
-            RecursivePrintPreOrder(node.Right);
+            RecursivePrintInOrder(node.Right);
         }
 
-        public void IterativePrintInOrder()
+        public void IterativePrintInOrder(MyBinaryTreeNode<T> rootNode)
         {
-            var stack = new MyStack<TreeNode>();
-            var currentNode = Root;
+            var stack = new MyStack<MyBinaryTreeNode<T>>();
+            var currentNode = rootNode;
 
             while (stack.Count > 0 || currentNode != null)
             {
@@ -89,12 +92,12 @@ namespace DataStructure.Models
 
         public void RecursivePrintPostOrder()
         {
-
+            throw new NotImplementedException();
         }
 
         public void IterativePrintPostOrder()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

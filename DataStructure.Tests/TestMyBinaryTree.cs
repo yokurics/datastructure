@@ -1,6 +1,7 @@
 ﻿using DataStructure.Extentions;
 using DataStructure.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Text;
@@ -76,7 +77,6 @@ namespace DataStructure.Tests
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod]
         public void TestIterativePrintInOrder()
         {
@@ -99,6 +99,40 @@ namespace DataStructure.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void TestRecursiveSearch()
+        {
+            var binaryTree = CreateDummySortedBinaryTree();
+            var values = new int[] { 1, 3, 7, 13 };
+            var expecteds = new int?[] { 1, 3, 7, null };
+            var actuals = new int?[4];
+
+            for (var i = 0; i < values.Length; i++)
+            {
+                actuals[i] = binaryTree.RecursiveSearch(binaryTree.Root, values[i])?.Value;
+            }
+
+            Assert.AreEqual(expecteds.Length, actuals.Length);
+            CollectionAssert.AreEqual(expecteds, actuals);
+        }
+
+        [TestMethod]
+        public void TestIterativeSearch()
+        {
+            var binaryTree = CreateDummySortedBinaryTree();
+            var values = new int[] { 1, 3, 7, 13 };
+            var expecteds = new int?[] { 1, 3, 7, null };
+            var actuals = new int?[4];
+
+            for (var i = 0; i < values.Length; i++)
+            {
+                actuals[i] = binaryTree.IterativeSearch(binaryTree.Root, values[i])?.Value;
+            }
+
+            Assert.AreEqual(expecteds.Length, actuals.Length);
+            CollectionAssert.AreEqual(expecteds, actuals);
+        }
+
         public MyBinaryTree<int> CreateDummyBinaryTree()
         {
             var binaryTree = new MyBinaryTree<int>();
@@ -110,6 +144,16 @@ namespace DataStructure.Tests
             binaryTree.Root.Left.Right.AddChildNodes(10, 11);
             binaryTree.Root.Right.Left.AddChildNodes(12, 13);
             binaryTree.Root.Right.Right.AddChildNodes(14, 15);
+            return binaryTree;
+        }
+
+        public MyBinaryTree<int> CreateDummySortedBinaryTree()
+        {
+            var binaryTree = new MyBinaryTree<int>();
+            binaryTree.Root = new MyBinaryTreeNode<int>(4);
+            binaryTree.Root.AddChildNodes(2, 6);
+            binaryTree.Root.Left.AddChildNodes(1, 3);
+            binaryTree.Root.Right.AddChildNodes(5, 7);
             return binaryTree;
         }
     }

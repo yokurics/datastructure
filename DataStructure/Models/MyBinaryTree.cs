@@ -99,5 +99,54 @@ namespace DataStructure.Models
         {
             throw new NotImplementedException();
         }
+
+        public MyBinaryTreeNode<int> RecursiveSearch(MyBinaryTreeNode<int> rootNode, int value)
+        {
+            if (rootNode == null)
+            {
+                return null;
+            }
+
+            if (rootNode.Value == value)
+            {
+                return rootNode;
+            }
+            else if (rootNode.Value > value)
+            {
+                return RecursiveSearch(rootNode.Left, value);
+            }
+            else
+            {
+                return RecursiveSearch(rootNode.Right, value);
+            }
+        }
+
+        public MyBinaryTreeNode<int> IterativeSearch(MyBinaryTreeNode<int> rootNode, int value)
+        {
+            var currentNode = rootNode;
+
+            while (true)
+            {
+                if (currentNode == null)
+                {
+                    break;
+                }
+
+                if (currentNode.Value == value)
+                {
+                    return currentNode;
+                }
+                else if (currentNode.Value < value)
+                {
+                    currentNode = currentNode.Right;
+                }
+                else
+                {
+                    currentNode = currentNode.Left;
+                }
+            }
+
+            return null;
+        }
     }
 }

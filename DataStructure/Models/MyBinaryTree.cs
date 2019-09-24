@@ -136,13 +136,13 @@ namespace DataStructure.Models
                 {
                     return currentNode;
                 }
-                else if (currentNode.Value < value)
+                else if (currentNode.Value > value)
                 {
-                    currentNode = currentNode.Right;
+                    currentNode = currentNode.Left;
                 }
                 else
                 {
-                    currentNode = currentNode.Left;
+                    currentNode = currentNode.Right;
                 }
             }
 
